@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+
+{% block head %}
+<title>Object Detector</title>
+{% endblock %}
+
+
+
+{% block body %}
+<div class="content" >
+    <h1 style="text-align: center">Image Table</h1>
+    {% if images|length < 1 %}
+    <h4 style="text-align: center">There are no images. Upload one!</h4>
+    {% else %}
+
+    <div class="table">
+        <table>
+            <tr>
+                <th>Image</th>
+                <th>Time Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for picture in images %}
+                <tr>
+                    <td>{{ picture.name }}</td>
+                    <td>{{ picture.date_created.time() }}</td>
+                    <td>
+                        <a href="/detect/{{ picture.id }}">Detect</a>
+                        <br>
+                        <a href="/delete/{{ picture.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    <div class="form">
+        <form action="/upload-image" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">  
+                <input type="file" class="custom-file-input" name="image">
+                <br>
+                <button type ="submit" class="btn btn-primary">Upload Image</button>
+            </div>
+
+            
+        </form>
+    </div>
+
+
+    {% if selectedImage %}
+       <img src="{{ selectedImage }}" alt="">
+    {% endif %}
+
+    
+</div>
+{% endblock %}
