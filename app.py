@@ -130,6 +130,7 @@ def upload_image():
 
     return render_template("form.html")
 
+"""
 def finds(): 
     test_datagen = ImageDataGenerator(rescale = 1./255) 
     vals = ['Cat', 'Dog'] # change this according to what you've trained your model to do 
@@ -145,7 +146,7 @@ def finds():
     pred = model.predict_generator(test_generator) 
     print(pred) 
     return str(vals[np.argmax(pred)]) 
-
+"""
 def allowed_image(filename):
     if not "." in filename:
         return False
